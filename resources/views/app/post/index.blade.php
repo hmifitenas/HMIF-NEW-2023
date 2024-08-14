@@ -78,7 +78,12 @@
                             </div>
                             <div>
                               <i class="fas fa-calendar-alt mr-3" style="font-size: 18px;"></i>
-                              <span>{{ $post->created_at->diffForHumans() }}</span>
+                              @if($post->created_at)
+                                  <span>{{ $post->created_at->diffForHumans() }}</span>
+                              @else
+                                  <span>Tanggal tidak tersedia</span>
+                              @endif
+
                             </div>
                           </div>
                         </div>

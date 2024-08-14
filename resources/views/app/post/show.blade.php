@@ -53,9 +53,15 @@
 										</a>
 									</li>
 									<li>
+										@if($post->created_at)
 										<a href="#">{{ $post->created_at->diffForHumans() }}
 											<i class="lnr lnr-calendar-full"></i>
 										</a>
+										@else
+										<a href="#">Tanggal tidak tersedia.
+											<i class="lnr lnr-calendar-full"></i>
+										</a>
+										@endif
 									</li>
 								</ul>
 								<ul class="social-links">
