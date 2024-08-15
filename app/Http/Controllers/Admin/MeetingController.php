@@ -105,6 +105,7 @@ class MeetingController extends Controller
                 'name' => 'required|min:5',
                 'meeting_category_id' => 'required|integer',
                 'detail' => 'required',
+                'qrcode' => 'required',
                 'begin_date' => 'required',
                 'start_meet_at' => 'required|date_format:H:i',
                 'end_meet_at' => 'required|date_format:H:i|after:start_meet_at',
@@ -112,11 +113,8 @@ class MeetingController extends Controller
             $start_meet_at = $request->start_meet_at;
             $start_presence_time = strtotime("+1 minutes", strtotime($start_meet_at));
             $start_presence = date('h:i', $start_presence_time);
-
             $end_presence = $request->end_meet_at;
             $data = $request->except(['_token', 'start_presence', 'end_presence']);
-            $data['start_presence'] = $start_presence;
-            $data['end_presence'] = $end_presence;
             $data['qrcode'] = $qr_code_file_name;
             Meeting::create($data);
         } else {
@@ -124,13 +122,16 @@ class MeetingController extends Controller
                 'name' => 'required|min:5',
                 'meeting_category_id' => 'required|integer',
                 'detail' => 'required',
+                'qrcode' => 'required',
                 'begin_date' => 'required',
                 'start_meet_at' => 'required|date_format:H:i',
                 'end_meet_at' => 'required|date_format:H:i|after:start_meet_at',
                 'start_presence' => 'required|date_format:H:i|after:start_meet_at',
                 'end_presence' => 'required|date_format:H:i|after:start_presence|before_or_equal:end_meet_at',
             ]);
-            Meeting::create($request->except(['_token', 'presence']));
+            $data = $request->except(['_token', 'presence']);
+            $data['qrcode'] = $qr_code_file_name;
+            Meeting::create($data);
         }
         $meetingId = Meeting::latest()->first()->id;
         foreach ($participants as $participant) {

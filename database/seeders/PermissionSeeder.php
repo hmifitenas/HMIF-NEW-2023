@@ -128,11 +128,29 @@ class PermissionSeeder extends Seeder
             ],
             ['name' => 'rapat-list']
         );
+        $permission_rapat_edit = Permission::updateOrCreate(
+            [
+                'name' => 'rapat-edit',
+            ],
+            ['name' => 'rapat-edit']
+        );
         $permission_rapat_detail = Permission::updateOrCreate(
             [
                 'name' => 'rapat-detail',
             ],
             ['name' => 'rapat-detail']
+        );
+        $permission_rapat_detail_edit = Permission::updateOrCreate(
+            [
+                'name' => 'rapat-detail-edit',
+            ],
+            ['name' => 'rapat-detail-edit']
+        );
+        $permission_rapat_delete = Permission::updateOrCreate(
+            [
+                'name' => 'rapat-delete',
+            ],
+            ['name' => 'rapat-delete']
         );
         $permission_rapat_create = Permission::updateOrCreate(
             [
@@ -452,6 +470,9 @@ class PermissionSeeder extends Seeder
         $role_admin->givePermissionTo($permission_rapat_list);
         $role_admin->givePermissionTo($permission_rapat_detail);
         $role_admin->givePermissionTo($permission_rapat_create);
+        $role_admin->givePermissionTo($permission_rapat_edit);
+        $role_admin->givePermissionTo($permission_rapat_delete);
+        $role_admin->givePermissionTo($permission_rapat_detail_edit);
 
         $role_admin->givePermissionTo($permission_peminjaman_list);
         $role_admin->givePermissionTo($permission_peminjaman_status);

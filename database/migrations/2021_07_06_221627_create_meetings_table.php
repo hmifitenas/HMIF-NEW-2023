@@ -17,6 +17,7 @@ class CreateMeetingsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('detail');
+            $table->string('qrcode');
             $table->unsignedBigInteger('meeting_category_id');
             $table->foreign('meeting_category_id')->references('id')->on('meeting_categories')->onDelete('cascade');
             $table->enum('status', ['open', 'closed']);
