@@ -133,7 +133,9 @@ class AlbumController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = "Edit Kategori Rapat";
+        $album = Album::findOrFail($id);
+        return view('admin.album.edit', compact('title', 'album'));
     }
 
     /**
@@ -145,7 +147,31 @@ class AlbumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $album = Album::find($id);
+        $this->validate($request, [
+            'name' => 'required|min:5',
+            'detail' => 'required|min:5',
+            'status' => 'required|integer',
+        ]);
+
+        $slug = Str::of($request->name)->slug('-');
+        if ($slug->contains($slug)) {
+            $album_slug = Album::where('slug', $slug)->get();
+            if ($album_slug->count() > 0) {
+                $slug = ($slug . '-' . Str::of($album_slug->count())->slug('-'));
+            } else {
+                $slug;
+            }
+        }
+
+        $album->update([
+            'name' => $request->name,
+            'detail' => $request->detail,
+            'slug' => $slug,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('admin.album')->with('success', 'Album berhasil diubah!');
     }
 
     /**
