@@ -79,7 +79,8 @@ class ProfileController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         $current_user = User::find($user);
-        if ($current_user->password === $request->password_current) {
+        
+        if (Hash::check($request->password_current, $current_user->password)) {
             User::whereId($user)->update([
                 'password' => Hash::make($request->password),
             ]);
