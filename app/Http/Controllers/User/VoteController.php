@@ -16,7 +16,11 @@ class VoteController extends Controller
     {
         $title = "E-Vote";
         $evote_setting = EvoteSetting::first();
-        if ($evote_setting->begin_date !== Carbon::now()->format('Y-m-d')) {
+        if($evote_setting == null){
+            $text = "Tidak ada pemilihan untuk saat ini";
+            return view('user.e-vote.date', compact('title', 'evote_setting', 'text'));
+        }
+        else if ($evote_setting->begin_date !== Carbon::now()->format('Y-m-d')) {
             $text = ($evote_setting->begin_date > Carbon::now()->format('Y-m-d') ? 'Pemilihan belum dimulai. ' : 'Pemilihan sudah dilaksanakan.');
             return view('user.e-vote.date', compact('title', 'evote_setting', 'text'));
         } else {
