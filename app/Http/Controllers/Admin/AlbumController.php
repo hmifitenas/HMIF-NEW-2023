@@ -156,6 +156,8 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $album = Album::findOrFail($id);
+        $album->delete();
+        return response()->json(['status' => TRUE]);
     }
 }

@@ -8,7 +8,7 @@
                     <div class="col-md-6">
                         <div class="clearfix">
                             <h1 class="float-start display-3 me-4">404</h1>
-                            <h2>Pemilihan Dimulai tanggal {{ $evote_setting->begin_date }}</h2>
+                            <h2>{{ $evote_setting == null ? 'Belum ada pemilihan' : 'Pemilihan dimulai tanggal'. ' ' .$evote_setting->begin_date }}</h2>
                             <h4 class="pt-3">Oops! {{ $text }}</h4>
                         </div>
                         <div class="input-group"><span class="input-group-text">

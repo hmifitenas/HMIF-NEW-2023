@@ -56,7 +56,11 @@ class PostController extends Controller
                     return ($row->status == 0) ? "Tidak Aktif" : "Aktif";
                 })
                 ->editColumn('created_at', function ($row) {
-                    return $row->created_at->diffForHumans();
+                    if ($row->created_at) {
+                        return $row->created_at->diffForHumans();
+                    } else {
+                        return "-";
+                    }
                 })
                 ->addColumn('action', function ($row) {
                     $edit_url = route('admin.post.edit', $row->id);

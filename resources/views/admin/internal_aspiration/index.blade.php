@@ -304,7 +304,7 @@
                 if (result.isConfirmed) {
                     let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: "{{ url('admin/aspiration/external/delete') }}/" + id,
+                        url: "{{ url('admin/aspiration/internal/delete') }}/" + id,
                         type: 'POST',
                         data: {
                             _token: CSRF_TOKEN,
