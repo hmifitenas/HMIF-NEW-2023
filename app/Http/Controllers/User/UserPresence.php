@@ -8,6 +8,7 @@ use App\MeetingUser;
 use App\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
 
 class UserPresence extends Controller
 {
@@ -17,6 +18,8 @@ class UserPresence extends Controller
         $meeting = Meeting::where('qrcode', $scanned_qr)->first();
         $participant = User::where('id', auth()->user()->id)->first();
         if ($meeting) {
+            $timeLimit = Carbon::parse($meeting->end_presence);
+            $current_time = Carbon::now();
             $participant_check = MeetingUser::where('meeting_id', $meeting->id)->where('user_id', $participant->id)->first();
             if (!$participant_check) {
                 Alert::error('Gagal!', 'Anda tidak terdaftar dalam pertemuan ini');
@@ -24,7 +27,7 @@ class UserPresence extends Controller
             } else if ($participant_check->status == 'Hadir') {
                 Alert::warning('Peringatan!', 'Anda sudah melakukan absensi');
                 return redirect()->back()->with('warning', 'Anda sudah melakukan absensi');
-            } else if ($meeting->end_presence < date('Y-m-d')) {
+            } else if ($current_time->greaterThan($timeLimit)) {
                 Alert::warning('Peringatan!', 'Pertemuan sudah berakhir');
                 return redirect()->back()->with('warning', 'Pertemuan sudah berakhir');
             } else {
