@@ -129,7 +129,7 @@
                                 Kategori Rapat</a></li>
                     </ul>
                 </li>
-                <li class="c-sidebar-nav-title">HMIF E-Vote</li>
+                {{-- <li class="c-sidebar-nav-title">HMIF E-Vote</li>
                 <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link "
                         href="{{ route('admin.evote.index') }}">
                         <i class="far fa-poll c-sidebar-nav-icon"></i> Dashboard E-Vote</a>
@@ -141,7 +141,7 @@
                 <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link "
                         href="{{ route('admin.leader-candidate.index') }}">
                         <i class="far fa-podium c-sidebar-nav-icon"></i> Pemilihan Kahim & BPA</a>
-                </li>
+                </li> --}}
                 <li class="c-sidebar-nav-title">Inventory Management</li>
                 <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
                     <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle {{ request()->is('admin/unit') || request()->is('admin/item') ? 'c-active' : '' }}"
@@ -159,10 +159,10 @@
                             </a></li>
                     </ul>
                 </li>
-                <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link "
+                {{-- <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link "
                         href="{{ route('admin.borrow') }}">
                         <i class="far fa-user-plus c-sidebar-nav-icon"></i> Peminjaman</a>
-                </li>
+                </li> --}}
             </ul>
         @elseif(auth()->user()->level == 'user' && auth()->user()->jabatan == 0 && auth()->user()->status == 'active')
             <ul class="c-sidebar-nav">
@@ -171,7 +171,7 @@
                         <i class="far fa-user c-sidebar-nav-icon"></i> Profile</a>
                 </li>
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('user.vote') }}">
-                    <i class="far fa-poll-people c-sidebar-nav-icon"></i> E-Vote </a>
+                        <i class="far fa-poll-people c-sidebar-nav-icon"></i> E-Vote </a>
                 </li>
             </ul>
         @else
@@ -202,7 +202,7 @@
                         <i class="far fa-clipboard c-sidebar-nav-icon"></i> Peminjaman </a>
                 </li>
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('user.vote') }}">
-                    <i class="far fa-poll-people c-sidebar-nav-icon"></i> E-Vote </a>
+                        <i class="far fa-poll-people c-sidebar-nav-icon"></i> E-Vote </a>
                 </li>
             </ul>
         @endif

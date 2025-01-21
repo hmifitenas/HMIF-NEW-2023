@@ -19,7 +19,7 @@ use SendGrid\Mail\Mail;
 //     return view('welcome');
 // });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 Route::get('send-mail', function () {
 
 

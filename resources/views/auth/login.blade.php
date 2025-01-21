@@ -84,7 +84,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    <div class="form-group row">
+                                    {{-- <div class="form-group row">
                                         <div class="col-md-6">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="remember"
@@ -95,24 +95,24 @@
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row">
                                         <div class="col-6">
                                             <button class="btn btn-primary px-4" type="submit">Login</button>
                                         </div>
-                                        <div class="col-6 text-right">
+                                        {{-- <div class="col-6 text-right">
                                             @if (Route::has('password.request'))
                                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                                     {{ __('Forgot Your Password?') }}
                                                 </a>
                                             @endif
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-4 d-flex align-items-center">
+                    {{-- <div class="col-xs-12 col-md-4 d-flex align-items-center">
                         <div class="card text-white bg-primary py-5">
                             <div class="card-body text-center">
                                 <div>
@@ -123,7 +123,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
